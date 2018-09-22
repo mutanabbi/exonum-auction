@@ -1,0 +1,10 @@
+[package]
+name = "auction"
+version = "0.1.0"
+authors = ["mutanabbi <ravishankar@mail.ru>"]
+
+[dependencies]
+exonum = "0.9.0"
+serde = "1.0.0"
+serde_derive = "1.0.0"
+serde_json = "1.0.0"
