@@ -25,6 +25,8 @@ struct TransactionResponse {
 impl AuctionApi {
     /// Endpoint for getting a single wallet.
     fn get_lot(state: &api::ServiceApiState, query: LotQuery) -> api::Result<Lot> {
+        // @todo fancy debug logging
+        println!("DEBUG: AuctionApi::get_lot");
         let snapshot = state.snapshot();
         let schema = Schema::new(snapshot);
         schema
@@ -34,6 +36,8 @@ impl AuctionApi {
 
     /// Endpoint for dumping all wallets from the storage.
     fn get_lots(state: &api::ServiceApiState, _query: ()) -> api::Result<Vec<Lot>> {
+        // @todo fancy debug logging
+        println!("DEBUG: AuctionApi::get_lots");
         let snapshot = state.snapshot();
         let schema = Schema::new(snapshot);
         let idx = schema.lots();
@@ -46,6 +50,8 @@ impl AuctionApi {
         state: &api::ServiceApiState,
         query: AuctionTransactions,
     ) -> api::Result<TransactionResponse> {
+        // @todo fancy debug logging
+        println!("DEBUG: AuctionApi::post_transaction");
         let transaction: Box<dyn blockchain::Transaction> = query.into();
         let tx_hash = transaction.hash();
         state.sender().send(transaction)?;

@@ -34,7 +34,7 @@ impl StorageKey for PrimKey {
     }
 
     fn write(&self, buffer: &mut [u8]) {
-        PublicKey::write(self.anouncer(), buffer);
+        PublicKey::write(self.anouncer(), &mut buffer[0..PublicKey::size(self.anouncer())]);
         Hash::write(self.tx_hash(), &mut buffer[PublicKey::size(self.anouncer())..]);
     }
 

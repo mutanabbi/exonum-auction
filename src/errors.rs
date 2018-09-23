@@ -5,6 +5,7 @@ pub enum Error {
     LotAlreadyExists,
     LotNotFound,
     BidNotHighEnough,
+    NotYourTurn,
     Unknown,
 }
 
@@ -13,7 +14,8 @@ impl From<Error> for ExecutionError {
         let desc =  match err {
             Error::LotAlreadyExists => "Lot already exists",
             Error::LotNotFound => "Lot was not found",
-            Error::BidNotHighEnough => "Bid lost. Current price of the lot is bigger than offered one.",
+            Error::BidNotHighEnough => "Bid lost. Current price of the lot is bigger than offered one",
+            Error::NotYourTurn => "Your previous bid hasn't beated yet",
             Error::Unknown => "Unknown error",
         };
         ExecutionError::with_description(err as u8, desc)

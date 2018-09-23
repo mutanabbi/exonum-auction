@@ -10,8 +10,6 @@ use transactions::AuctionTransactions;
 use api::AuctionApi;
 
 
-pub const SERVICE_ID: u16 = 1;
-
 pub struct AuctionService;
 
 impl Service for AuctionService {
@@ -20,19 +18,24 @@ impl Service for AuctionService {
     }
 
     fn service_id(&self) -> u16 {
-        SERVICE_ID
+        use id;
+        id::SERVICE_ID
     }
 
     fn tx_from_raw(&self, raw: RawTransaction) -> Result<Box<dyn Transaction>, encoding::Error>{
+        // @todo fancy debug logging
+        println!("DEBUG: AuctionService::tx_from_raw");
         let tx = AuctionTransactions::tx_from_raw(raw)?;
         Ok(tx.into())
     }
 
     fn state_hash(&self, _: &dyn Snapshot) -> Vec<Hash> {
-      vec![]
+        vec![]
     }
 
     fn wire_api(&self, builder: &mut ServiceApiBuilder) {
-       AuctionApi::wire(builder)
+        // @todo fancy debug logging
+        println!("DEBUG: AuctionService::wire_api");
+        AuctionApi::wire(builder)
     }
 }

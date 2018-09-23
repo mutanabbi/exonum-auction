@@ -1,11 +1,11 @@
 use exonum::crypto::{Hash, PublicKey};
-use service::SERVICE_ID;
+use id;
 
 
 // This macro generates TransactionSet trait implementation
 transactions! {
     pub AuctionTransactions {
-        const SERVICE_ID = SERVICE_ID;
+        const SERVICE_ID = id::SERVICE_ID;
 
         struct TxAnounceLot {
             /// Public key of the lot anouncer (seller)
