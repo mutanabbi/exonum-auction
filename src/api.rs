@@ -61,7 +61,7 @@ impl AuctionApi {
     pub fn wire(builder: &mut api::ServiceApiBuilder) {
         builder.public_scope()
             .endpoint("v1/lot", Self::get_lot)
-            .endpoint("v1/lots", Self::get_lots)
-            .endpoint_mut("v1/lot", Self::post_transaction);
+            .endpoint("v1/lots/", Self::get_lots)
+            .endpoint_mut("v1/lots/", Self::post_transaction);
     }
 }
